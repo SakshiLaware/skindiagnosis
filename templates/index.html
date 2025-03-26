@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedicineAI - Skin Disease Detection</title>
+    <meta name="description" content="AI-powered Skin Disease detection and treatment recommendations">
+    <meta name="keywords" content="SkinXpert, skin disease detection, treatment management">
+    <meta name="author" content="SkinXpert">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="SkinXpert">
+    <meta property="og:description" content="AI-powered Skin Disease detection and treatment recommendations">
+    <meta property="og:image" content="/static/images/og-image.jpg">
+    <meta property="og:url" content="https://medai.onrender.com">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar .nav-links li a {
+            font-size: 1.2rem;
+            color: black;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: url('/static/images/hero-bg.jpg') no-repeat center center/cover;
+            color: #000;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            font-size: 1.4rem;
+            background-color: #ff5733;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e64a19;
+        }
+
+        .features {
+            background-color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .features .feature {
+            margin-bottom: 30px;
+        }
+
+        .feature h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .feature p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .how-to-use {
+            background-color: #f9f9f9;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .how-to-use .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-to-use h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .step img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        .step h3 {
+            font-size: 1.8rem;
+            margin-top: 15px;
+        }
+
+        .step p {
+            font-size: 1.3rem;
+            color: #555;
+        }
+    </style>
+
+    <!-- JavaScript -->
+    <script defer src="/static/js/main.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/"><img src="/static/images/medAi_1.jpeg" alt="SkinXpert Logo"></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/signin" class="button">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>AI-Powered Skin Disease Detection</h1>
+            <p>Get accurate preliminary diagnosis and treatment recommendations with AI.</p>
+            <button onclick="location.href='/signin';" class="cta-button">Get Started</button>
+        </div>
+    </section>
+
+    <section class="how-to-use">
+        <div class="container">
+            <h2>How to use AI Dermatologist?</h2>
+            <div class="steps">
+                <div class="step">
+                    <img src="/static/images/photo1.png" alt="Take a Photo">
+                    <h3>Take a photo</h3>
+                    <p>Keep zoomed at the closest distance (less than 10 cm), keep in focus, and center only the skin mark (without hair, wrinkles, and other objects).</p>
+                </div>
+                <div class="step">
+                    <img src="/static/images/photo2.png" alt="Identify and Send">
+                    <h3>Identify and send</h3>
+                    <p>Send your photo to the Artificial Intelligence. The system will analyze it and send you prescription and recommendation based on skin analysis.</p>
+                </div>
+                <div class="step">
+                    <img src="/static/images/photo3.png" alt="Check Result">
+                    <h3>Get Result</h3>
+                    <p>Get the result within 60 seconds and related advice on the next steps to take.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-use">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Why is AI Dermatologist worth using?</h2>
+            <div class="features-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
+                <div style="display: flex; justify-content: center; width: 100%; gap: 40px;">
+                    <div class="feature" style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+                        <img src="/static/images/ss1.png" alt="Smart" style="width: 80px;">
+                        <h3>Smart</h3>
+                        <p>AI Dermatologist is created using advanced artificial intelligence developed by IT specialists and doctors, achieving professional dermatologist-level accuracy.</p>
+                    </div>
+                    <div class="feature" style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+                        <img src="/static/images/ss2.png" alt="Simple" style="width: 80px;">
+                        <h3>Simple</h3>
+                        <p>Place your phone near a mole or skin formation, and within a minute, you’ll know if there's a cause for concern.</p>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; width: 100%; gap: 40px; margin-top: 30px;">
+                    <div class="feature" style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+                        <img src="/static/images/ss3.png" alt="Accessible" style="width: 80px;">
+                        <h3>Accessible</h3>
+                        <p>Available anytime, anywhere. Keep your skin health in check at your fingertips, even while on the go.</p>
+                    </div>
+                    <div class="feature" style="flex: 1; min-width: 250px; max-width: 300px; text-align: center;">
+                        <img src="/static/images/ss4.png" alt="Affordable" style="width: 80px;">
+                        <h3>Affordable</h3>
+                        <p>Leading AI image analytics at an unbeatable price. Flexible pricing plans and customizable bundles save both time and money.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ai-analysis-section" style="background-color: #ffffff; padding: 80px 20px;">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Left side: AI Letters -->
+            <div class="ai-letters" style="flex: 1; min-width: 250px; max-width: 400px; text-align: center; margin-bottom: 20px;">
+                <img src="/static/images/AI.png" alt="AI Letters" style="width: 100%; max-width: 300px;">
+            </div>
+    
+            <!-- Right side: Text content -->
+            <div class="ai-text" style="flex: 2; min-width: 300px; padding-left: 40px;">
+                <h2 style="font-size: 2rem; font-weight: bold; color: #12203E; margin-bottom: 20px;">How does Artificial Intelligence analyze images?</h2>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
+                    An AI virtual dermatologist analyzes skin images using deep learning models trained on labeled datasets of skin diseases. The images are preprocessed and fed into models like CNNs or Vision Transformers, which identify patterns and classify conditions based on learned features. The system is trained and tested to ensure accuracy using medical datasets.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
+                    When a user uploads a skin image, the AI processes it and predicts the most likely condition, assigning confidence scores. It may highlight affected areas and suggest treatments or refer the user to a dermatologist for further evaluation.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #333;">
+                    To ensure safety and reliability, the system follows medical regulations like HIPAA and GDPR. It continuously improves by learning from new data and is designed to assist, not replace, human dermatologists for better skin health management...
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MedicineAI - Skin Disease Detection</title>
+        <meta name="description" content="AI-powered Skin Disease detection and treatment recommendations">
+        <meta name="keywords" content="SkinXpert, skin disease detection, treatment management">
+        <meta name="author" content="SkinXpert">
+        <meta name="robots" content="index, follow">
+    
+        <link rel="stylesheet" href="/static/css/index.css">
+        <link rel="stylesheet" href="/static/css/styles.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+    
+            footer {
+                background: #222;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                margin-top: 20px;
+            }
+    
+            .footer-container {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 20px;
+                background-color: #12203E;
+                color: white;
+            }
+    
+            .footer-left, .footer-center, .footer-right {
+                flex: 1;
+                min-width: 250px;
+                text-align: left;
+                padding: 10px;
+            }
+    
+            .footer-left p {
+                font-size: 1rem;
+            }
+    
+            .footer-links a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                margin: 5px 0;
+            }
+    
+            .footer-right a {
+                color: #ff5733;
+                font-weight: bold;
+                text-decoration: none;
+            }
+    
+            .footer-icons {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+    
+            .footer-icons img {
+                width: 30px;
+                height: 30px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-left">
+                    <p><strong>AI Dermatologist</strong> is not intended to perform diagnosis, but rather to provide users the ability to image, track, and better understand their moles.</p>
+                    <p>&copy; 2025 AI SkinXpert Dermatologist. All Rights Reserved.</p>
+                </div>
+                <div class="footer-center">
+                    <div class="footer-links">
+                        <a href="#">Main</a>
+                        <a href="#">Early Detection</a>
+                        <a href="#">How it works</a>
+                        <a href="#">Artificial Intelligence</a>
+                        <a href="#">Features</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of use</a>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p>If you have any questions about our AI system, contact us via email:</p>
+                    <a href="mailto:support@ai-SkinXpert.com">support@ai-skinxpert.com</a>
+                    <div class="footer-icons">
+                        <img src="/static/images/facebook.jfif" alt="Facebook">
+                        <img src="/static/images/linkedin.png" alt="LinkedIn">
+                        <img src="/static/images/twitter.jfif" alt="Twitter">
+                        <img src="/static/images/instagram.jfif" alt="Instagram">
+                        <img src="/static/images/telegram.jfif" alt="Telegram">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+    
+    </html>
+    
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SkinXpert Dermatologist. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
